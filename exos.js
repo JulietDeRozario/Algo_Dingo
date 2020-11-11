@@ -31,7 +31,7 @@ c'est à dire que ton programme devra comparer chaque élements
 entre eux à l'aide de 2 boucles imbriquées.
 */
 
-const doubleLoop = (array, k) => {
+const exo1 = (array, k) => {
   if(typeof k != "number" || k < 0 || k%1 != 0){
     return "incorrect entrees";
   }
@@ -48,7 +48,7 @@ const doubleLoop = (array, k) => {
   return false;
 }
 
-console.log("Exercice 1: " + doubleLoop([1, 8, 10, 21], 18));
+console.log("Exercice 1: " + exo1([1, 8, 10, 21], 18));
 
 
 
@@ -59,7 +59,7 @@ Résous le sujet 2 avec une complexité algorithmique de O(n²), c'est
 l'aide de 2 boucles imbriquées.
 */
 
-const howManyHasView = (array) => {
+const exo2 = (array) => {
   let sunsetView = 1;
   let noView = false;
 
@@ -82,7 +82,7 @@ const howManyHasView = (array) => {
   return sunsetView;
 }
 
-console.log("Exercice 2: " + howManyHasView([3, 7, 8, 3, 6, 1]));
+console.log("Exercice 2: " + exo2([3, 7, 8, 3, 6, 1]));
 
 
 
@@ -142,11 +142,39 @@ Résous le sujet 1 en ne faisant qu'un seul passage sur ta liste.
 Si tu réussis cet exercice, sache que ce dernier a été posé en 
 entretien par Google. Tu peux postuler à Google. La classe, non ? */
 
+const exo5 = (array, k) => {
+  let searchValues = new Set();
+  searchValues.add(k - array[0]);
+  for (let i = 1; i < array.length; i++) {
+    let searchValue = k - array[i];
+    if (searchValues.has(array[i])) {
+      return true;
+    } else {
+      searchValues.add(searchValue);
+    }
+  }
+  return false;
+}
 
-
+console.log("Exercice 5: " + exo5([1, 8, 10, 21], 31));
 
 
 /* ===== EXERCICE 6 ==========================================
 Résous le sujet 2 en ne faisant qu'un seul passage sur ta liste.
 Si tu réussis cet exercice, sache que ce dernier a été posé en 
 entretien par Mailchimp. Tu peux postuler à Mailchimp. La classe, non ?*/
+
+const exo6 = (array) => {
+  let sunsetView = 1;
+  for(i = 0; i < array.length - 1; i ++){
+    let otherValues = array.slice(i + 1);
+    let max = Math.max(...otherValues);
+
+    if(array[i] > max){
+      sunsetView += 1;
+    }
+  }
+  return sunsetView;
+}
+
+console.log("Exercice 6: " + exo6([1,3,7,6,4]));
